@@ -5,6 +5,7 @@ import BarGraph2 from '../BarGraph2'
 import { Dropdown, Menu } from 'semantic-ui-react'
 import FileDropdown from '../FileDropdown'
 import FileDropdown2 from '../FileDropdown2'
+import VisualizationDropdown from '../VisualizationDropdown'
 
 
 class DataViz extends React.Component {
@@ -12,8 +13,10 @@ class DataViz extends React.Component {
     super()
     this.state = {
       data: [],
+      visualizationTypes: ["BarChart", "LineChart"],
       selectedFileIndex: 0,
-      selectedFileIndex2: 0
+      selectedFileIndex2: 0,
+      selectedVisualization: null
     }
   }
 
@@ -26,8 +29,6 @@ class DataViz extends React.Component {
       credentials: 'include',
       method: 'GET'
     });
-
-    console.log(responseGetFiles, 'responseGetFiles')
 
     const parsedResponse = await responseGetFiles.json();
 
@@ -48,8 +49,14 @@ class DataViz extends React.Component {
     })
   }
 
+  selectVisualization = (visualizationTypeIndex) => {
+    this.setState({
+      selectedVisualization: this.state.visualizationTypes[visualizationTypeIndex]
+    })
+  }
+
   render(){
-    
+    console.log(this.state.selectedVisualization)
     return(
       <div>
 
@@ -58,6 +65,7 @@ class DataViz extends React.Component {
         <h1>Here is where the vizualizations will go</h1>
 
           <div>
+            <VisualizationDropdown visualizations={this.state.visualizationTypes} selectVisualization={this.selectVisualization} />
             <FileDropdown files={this.state.data} selectFile={this.selectFile} />
             {this.state.data === undefined || this.state.data.length == 0 || this.state.selectedFileIndex == undefined ? null : <BarGraph files={this.state.data} selectedFile={this.state.selectedFileIndex} />}
           </div>
