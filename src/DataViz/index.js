@@ -4,6 +4,7 @@ import {XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries} from 'react-vis';
 import BarGraph from '../BarGraph'
 import BarGraph2 from '../BarGraph2'
 import LineChart from '../LineChart'
+import LineChart2 from '../LineChart2'
 
 import { Dropdown, Menu } from 'semantic-ui-react'
 
@@ -69,8 +70,11 @@ class DataViz extends React.Component {
 
   render(){
     
+    // Initialize variables to store selected visualizations
     let visualization;
+    let visualization2;
 
+    // Let user selection determine which visualization to render in the first visualization div
     if (this.state.selectedVisualization == "BarChart") {
 
       visualization = <BarGraph files={this.state.data} selectedFile={this.state.selectedFileIndex} />
@@ -80,6 +84,19 @@ class DataViz extends React.Component {
       visualization = <LineChart files={this.state.data} selectedFile={this.state.selectedFileIndex} />
 
     }
+
+    // Let user selection determine which visualization to render in the second visualization div
+    if (this.state.selectedVisualization2 == "BarChart") {
+
+      visualization2 = <BarGraph2 files={this.state.data} selectedFile={this.state.selectedFileIndex2} />
+    
+    } else if (this.state.selectedVisualization2 == "LineChart") {
+
+      visualization2 = <LineChart files={this.state.data} selectedFile={this.state.selectedFileIndex2} />
+
+    }
+
+
 
     return(
       <div>
@@ -102,7 +119,7 @@ class DataViz extends React.Component {
             <VisualizationDropdown2 visualizations={this.state.visualizationTypes} selectVisualization={this.selectVisualization2} />
             <FileDropdown2 files={this.state.data} selectFile2={this.selectFile2} />
 
-            {this.state.data === undefined || this.state.data.length == 0 || this.state.selectedFileIndex2 == undefined ? null : <BarGraph2 files={this.state.data} selectedFile={this.state.selectedFileIndex2} />}
+            {this.state.data === undefined || this.state.data.length == 0 || this.state.selectedFileIndex2 == undefined ? null : visualization2}
           
           </div>
 
