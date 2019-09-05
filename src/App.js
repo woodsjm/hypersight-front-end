@@ -6,7 +6,6 @@ import DataViz from './DataViz'
 class App extends Component {
   constructor() {
     super();
-
   }
   getFiles = async () => {
 

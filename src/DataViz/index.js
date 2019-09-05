@@ -1,44 +1,56 @@
 import React from 'react'
 import {XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries} from 'react-vis';
 import BarGraph from '../BarGraph'
+import { Dropdown, Menu } from 'semantic-ui-react'
+import FileDropdown from '../FileDropdown'
 
 
 class DataViz extends React.Component {
   constructor() {
     super()
     this.state = {
-      data: []
+      data: [],
+      selectedFileIndex: 0
     }
   }
   componentDidMount() {
     this.getFiles()
+
   }
+  getFiles = async () => {
+    const responseGetFiles = await fetch('http://localhost:8000/prepdata', {
+      credentials: 'include',
+      method: 'GET'
+    });
 
-  getFiles() {
-    const getFiles = this.props.getFiles()
+    console.log(responseGetFiles, 'responseGetFiles')
 
-    getFiles.then((parsedResponse) => {
-      console.log(parsedResponse, "HERE IS THE PARSED RESPONSE IN DataViz")
-      if (parsedResponse.status.message == "Success") {
-        this.setState({
-          data: parsedResponse.data
-        })
-      } else {
-        console.log(parsedResponse)
-      }
-    }).catch((err) => {
-      console.log(err)
+    const parsedResponse = await responseGetFiles.json();
+
+    this.setState({
+      data: parsedResponse.data
     })
 
-    console.log(this.state, "HERE IS STATE INSIDE DATA VIZ")
+
+  }
+
+
+
+  selectFile = (fileIndex) => {
+    this.setState({
+      selectedFileIndex: fileIndex
+    })
   }
 
   render(){
+    console.log(this.state, "HERE IS STATE INSIDE DATA VIZ")
+    console.log(this.state.selectedFileIndex, "HERE IS THE CHOSEN FILE INDEX")
     return(
       <div>
       <div>---------------------------</div>
       <h1>Here is where the vizualizations will go</h1>
-      <BarGraph/>
+        <FileDropdown files={this.state.data} selectFile={this.selectFile} />
+      {this.state.data === undefined || this.state.data.length == 0 || this.state.selectedFileIndex == undefined ? null : <BarGraph files={this.state.data} selectedFile={this.state.selectedFileIndex} />}
       </div>
       )
   }

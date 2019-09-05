@@ -5,7 +5,8 @@ class MainContainer extends React.Component {
   constructor() {
     super();
     this.state = {
-      csvfile: undefined
+      csvfile: undefined,
+      filename: ''
     };
     this.updateData = this.updateData.bind(this);
   }
@@ -26,20 +27,20 @@ class MainContainer extends React.Component {
   };
 
   addFile = async () => {
-    console.log(this.state.csvfile, "HERE IS STATE INSIDE ADDFILE")
+    console.log(this.state, "HERE IS STATE INSIDE ADDFILE")
     try {
 
-    const registerResponse = await fetch('http://localhost:8000/upload', {
-      method: 'POST',
-      credentials: 'include', 
-      body: JSON.stringify(this.state.csvfile),
-      headers: {
-        'Content-Type': 'application/json' 
-      }
-    })
+      const registerResponse = await fetch('http://localhost:8000/upload', {
+        method: 'POST',
+        credentials: 'include', 
+        body: JSON.stringify(this.state),
+        headers: {
+          'Content-Type': 'application/json' 
+        }
+      })
 
-    const parsedResponse = await registerResponse.json();
-    console.log(parsedResponse, "HERE IS THE PARSED RESPONSE")
+      const parsedResponse = await registerResponse.json();
+      console.log(parsedResponse, "HERE IS THE PARSED RESPONSE")
       
       
     /*this.setState(() => {
@@ -49,10 +50,10 @@ class MainContainer extends React.Component {
       }
     })*/
       
-    return parsedResponse
-  } catch (err) {
-    console.log(err)
-  }
+      return parsedResponse
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   updateData(result) {
@@ -61,19 +62,11 @@ class MainContainer extends React.Component {
     this.setState({
       csvfile: data
     })
-    // console.log()
-    // const addFile = this.addFile(this.state.csvfile)
-
-    // addFile.then((data) => {
-    //   console.log(data, "HERE IS THE DATA IN THE importCSV method")
-    //   if(data.status.message === 'Success'){
-    //     console.log("SUCCESSFULLY UPLOADED CSV")
-    //   } else {
-    //     console.log(data)
-    //   }
-    // }).catch((err) => {
-    //   console.log(err)
-    // })
+  }
+  handleTitle =(e) => {
+    this.setState({
+      filename : e.currentTarget.value
+    })
   }
 
   render() {
@@ -90,8 +83,17 @@ class MainContainer extends React.Component {
           placeholder={null}
           onChange={this.handleChange}
         />
-        <p />
+        <br/>
+        <br/>
         <button onClick={this.importCSV}> UPLOAD</button>
+        <br/>
+        <br/>
+        <form>
+          <label>
+            Give your file a title:
+            <input type="text" name="filename" value={this.state.filename} onChange={this.handleTitle}/>
+          </label>
+        </form>
         <button onClick={this.addFile}> Test Database</button>
       </div>
     );
