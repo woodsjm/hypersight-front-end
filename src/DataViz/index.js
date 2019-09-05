@@ -1,12 +1,16 @@
 import React from 'react'
 import {XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries} from 'react-vis';
+
 import BarGraph from '../BarGraph'
 import BarGraph2 from '../BarGraph2'
 import LineChart from '../LineChart'
+
 import { Dropdown, Menu } from 'semantic-ui-react'
+
 import FileDropdown from '../FileDropdown'
 import FileDropdown2 from '../FileDropdown2'
 import VisualizationDropdown from '../VisualizationDropdown'
+import VisualizationDropdown2 from '../VisualizationDropdown2'
 
 
 class DataViz extends React.Component {
@@ -17,7 +21,8 @@ class DataViz extends React.Component {
       visualizationTypes: ["BarChart", "LineChart"],
       selectedFileIndex: 0,
       selectedFileIndex2: 0,
-      selectedVisualization: "BarChart"
+      selectedVisualization: "BarChart",
+      selectedVisualization2: "BarChart"
     }
   }
 
@@ -56,6 +61,12 @@ class DataViz extends React.Component {
     })
   }
 
+  selectVisualization2 = (visualizationTypeIndex) => {
+    this.setState({
+      selectedVisualization2: this.state.visualizationTypes[visualizationTypeIndex]
+    })
+  }
+
   render(){
     
     let visualization;
@@ -78,16 +89,21 @@ class DataViz extends React.Component {
         <h1>Here is where the vizualizations will go</h1>
 
           <div>
+
             <VisualizationDropdown visualizations={this.state.visualizationTypes} selectVisualization={this.selectVisualization} />
             <FileDropdown files={this.state.data} selectFile={this.selectFile} />
+
             {this.state.data === undefined || this.state.data.length == 0 || this.state.selectedFileIndex == undefined ? null : visualization}
+         
           </div>
 
           <div>
 
+            <VisualizationDropdown2 visualizations={this.state.visualizationTypes} selectVisualization={this.selectVisualization2} />
             <FileDropdown2 files={this.state.data} selectFile2={this.selectFile2} />
-            {this.state.data === undefined || this.state.data.length == 0 || this.state.selectedFileIndex2 == undefined ? null : <BarGraph2 files={this.state.data} selectedFile={this.state.selectedFileIndex2} />}
 
+            {this.state.data === undefined || this.state.data.length == 0 || this.state.selectedFileIndex2 == undefined ? null : <BarGraph2 files={this.state.data} selectedFile={this.state.selectedFileIndex2} />}
+          
           </div>
 
       </div>
