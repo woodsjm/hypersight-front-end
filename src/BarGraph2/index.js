@@ -6,7 +6,6 @@ import {
   VerticalGridLines,
   HorizontalGridLines,
   VerticalBarSeries,
-  VerticalBarSeriesCanvas,
   DiscreteColorLegend
 } from 'react-vis';
 
@@ -24,7 +23,7 @@ const BarGraph = (props) => {
   // Store csv data - from the selected csv file - in new array with row headers removed
   const newData = props.files[props.selectedFile][title].map(obj => {
     const o = {}
-    Object.keys(obj).forEach(k => {if( k!= "") o[k] = obj[k]})
+    Object.keys(obj).forEach(k => {if( k!== "") o[k] = obj[k]})
     return o
   })
 

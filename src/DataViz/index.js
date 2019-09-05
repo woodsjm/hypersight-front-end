@@ -1,12 +1,12 @@
 import React from 'react'
-import {XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries} from 'react-vis';
+
 
 import BarGraph from '../BarGraph'
 import BarGraph2 from '../BarGraph2'
 import LineChart from '../LineChart'
 import LineChart2 from '../LineChart2'
 
-import { Dropdown, Menu } from 'semantic-ui-react'
+
 
 import FileDropdown from '../FileDropdown'
 import FileDropdown2 from '../FileDropdown2'
@@ -75,22 +75,22 @@ class DataViz extends React.Component {
     let visualization2;
 
     // Let user selection determine which visualization to render in the first visualization div
-    if (this.state.selectedVisualization == "BarChart") {
+    if (this.state.selectedVisualization === "BarChart") {
 
       visualization = <BarGraph files={this.state.data} selectedFile={this.state.selectedFileIndex} />
     
-    } else if (this.state.selectedVisualization == "LineChart") {
+    } else if (this.state.selectedVisualization === "LineChart") {
 
       visualization = <LineChart files={this.state.data} selectedFile={this.state.selectedFileIndex} />
 
     }
 
     // Let user selection determine which visualization to render in the second visualization div
-    if (this.state.selectedVisualization2 == "BarChart") {
+    if (this.state.selectedVisualization2 === "BarChart") {
 
       visualization2 = <BarGraph2 files={this.state.data} selectedFile={this.state.selectedFileIndex2} />
     
-    } else if (this.state.selectedVisualization2 == "LineChart") {
+    } else if (this.state.selectedVisualization2 === "LineChart") {
 
       visualization2 = <LineChart2 files={this.state.data} selectedFile={this.state.selectedFileIndex2} />
 
@@ -114,7 +114,7 @@ class DataViz extends React.Component {
 
             </div>
 
-            {this.state.data === undefined || this.state.data.length == 0 || this.state.selectedFileIndex == undefined ? null : visualization}
+            {this.state.data === undefined || this.state.data.length === 0 || this.state.selectedFileIndex === undefined ? null : visualization}
          
           </div>
 
@@ -126,7 +126,7 @@ class DataViz extends React.Component {
 
             </div>
 
-            {this.state.data === undefined || this.state.data.length == 0 || this.state.selectedFileIndex2 == undefined ? null : visualization2}
+            {this.state.data === undefined || this.state.data.length === 0 || this.state.selectedFileIndex2 === undefined ? null : visualization2}
           
           </div>
         </div>
