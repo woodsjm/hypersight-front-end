@@ -92,11 +92,9 @@ class DataViz extends React.Component {
     
     } else if (this.state.selectedVisualization2 == "LineChart") {
 
-      visualization2 = <LineChart files={this.state.data} selectedFile={this.state.selectedFileIndex2} />
+      visualization2 = <LineChart2 files={this.state.data} selectedFile={this.state.selectedFileIndex2} />
 
     }
-
-
 
     return(
       <div>
