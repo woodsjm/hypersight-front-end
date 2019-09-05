@@ -11,45 +11,54 @@ import {
 } from 'react-vis';
 
 
-
 const BarGraph = (props) => {
 
-
-  //const ITEMS = ['NET REVENUE']
-  // console.log(ITEMS, "HERE ARE THE LABELS FOR THE LEGEND")
-  
-
   const [ title ] = Object.keys(props.files[props.selectedFile])
-  //console.log(title, "HERE IS THE TITLE")
-  console.log(props.selectedFile, "HERE IS PROPS.SELECTED FILE")
-  console.log(props.files[props.selectedFile][title], "HERE IS PROPS.FILE")
 
   const ITEMS = props.files[props.selectedFile][title].map(object => {
-  return object['']
+    return object['']
   })
-  //console.log(props.data[0][title])
 
-  // const newData = props.files[0][title].map(obj => {
-  // const o = {}
-  // Object.keys(obj).forEach(k => {if( k!= "") o[k] = obj[k]})
-  // return o
-  // })
+  const newData = props.files[props.selectedFile][title].map(obj => {
+    const o = {}
+    Object.keys(obj).forEach(k => {if( k!= "") o[k] = obj[k]})
+    return o
+  })
 
-  // console.log(newData, "HERE IS THE NEW DATA")
+  const keyNames = Object.keys(newData[0])
+
+  const plottableData = []
+  for (let i = 0; i < newData.length; i++) {
+    const series = []
+    
+    for (let j = 0; j < keyNames.length; j++) {
+      const dataPoint = {x: keyNames[j], y: newData[i][keyNames[j]]}
+      series.push(dataPoint)
+    }
+    
+    plottableData.push(series)
+  }
+
+  const dataFromCsv = plottableData.map(arr => {
+    return <VerticalBarSeries data={arr} />
+  })
 
   return (
     <div>
-    <XYPlot xType="ordinal" width={300} height={300} xDistance={100}>
-          <VerticalGridLines />
-          <HorizontalGridLines />
-          <XAxis />
-          <YAxis />
-          <VerticalBarSeries  />
-          <VerticalBarSeries />
-    </XYPlot>
-    <DiscreteColorLegend orientation="horizontal" items={ITEMS} />
+      <XYPlot xType="ordinal" width={300} height={300} xDistance={100}>
+
+            <VerticalGridLines />
+            <HorizontalGridLines />
+            <XAxis />
+            <YAxis />
+            {dataFromCsv}
+            
+      </XYPlot>
+
+      <DiscreteColorLegend orientation="horizontal" items={ITEMS} />
+
     </div>
-    )
+  )
 }
 
 export default BarGraph
