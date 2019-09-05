@@ -97,29 +97,39 @@ class DataViz extends React.Component {
     }
 
     return(
-      <div>
+      <div style={{display: 'flex', flexDirection: 'column'}}>
 
         <div>---------------------------</div>
 
-        <h1>Here is where the vizualizations will go</h1>
+        <div>
+          <h1>Here is where the vizualizations will go</h1>
+        </div>
 
+        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>
           <div>
+            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>
 
-            <VisualizationDropdown visualizations={this.state.visualizationTypes} selectVisualization={this.selectVisualization} />
-            <FileDropdown files={this.state.data} selectFile={this.selectFile} />
+              <VisualizationDropdown visualizations={this.state.visualizationTypes} selectVisualization={this.selectVisualization} />
+              <FileDropdown files={this.state.data} selectFile={this.selectFile} />
+
+            </div>
 
             {this.state.data === undefined || this.state.data.length == 0 || this.state.selectedFileIndex == undefined ? null : visualization}
          
           </div>
 
           <div>
+              <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>
 
-            <VisualizationDropdown2 visualizations={this.state.visualizationTypes} selectVisualization={this.selectVisualization2} />
-            <FileDropdown2 files={this.state.data} selectFile2={this.selectFile2} />
+                <VisualizationDropdown2 visualizations={this.state.visualizationTypes} selectVisualization={this.selectVisualization2} />
+                <FileDropdown2 files={this.state.data} selectFile2={this.selectFile2} />
+
+            </div>
 
             {this.state.data === undefined || this.state.data.length == 0 || this.state.selectedFileIndex2 == undefined ? null : visualization2}
           
           </div>
+        </div>
 
       </div>
       )
