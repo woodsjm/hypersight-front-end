@@ -2,6 +2,7 @@ import React from 'react'
 import {XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries} from 'react-vis';
 import BarGraph from '../BarGraph'
 import BarGraph2 from '../BarGraph2'
+import LineChart from '../LineChart'
 import { Dropdown, Menu } from 'semantic-ui-react'
 import FileDropdown from '../FileDropdown'
 import FileDropdown2 from '../FileDropdown2'
@@ -16,7 +17,7 @@ class DataViz extends React.Component {
       visualizationTypes: ["BarChart", "LineChart"],
       selectedFileIndex: 0,
       selectedFileIndex2: 0,
-      selectedVisualization: null
+      selectedVisualization: "BarChart"
     }
   }
 
@@ -56,7 +57,19 @@ class DataViz extends React.Component {
   }
 
   render(){
-    console.log(this.state.selectedVisualization)
+    
+    let visualization;
+
+    if (this.state.selectedVisualization == "BarChart") {
+
+      visualization = <BarGraph files={this.state.data} selectedFile={this.state.selectedFileIndex} />
+    
+    } else if (this.state.selectedVisualization == "LineChart") {
+
+      visualization = <LineChart files={this.state.data} selectedFile={this.state.selectedFileIndex} />
+
+    }
+
     return(
       <div>
 
@@ -67,7 +80,7 @@ class DataViz extends React.Component {
           <div>
             <VisualizationDropdown visualizations={this.state.visualizationTypes} selectVisualization={this.selectVisualization} />
             <FileDropdown files={this.state.data} selectFile={this.selectFile} />
-            {this.state.data === undefined || this.state.data.length == 0 || this.state.selectedFileIndex == undefined ? null : <BarGraph files={this.state.data} selectedFile={this.state.selectedFileIndex} />}
+            {this.state.data === undefined || this.state.data.length == 0 || this.state.selectedFileIndex == undefined ? null : visualization}
           </div>
 
           <div>
