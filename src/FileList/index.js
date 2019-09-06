@@ -1,35 +1,66 @@
 import React from 'react'
-import { Grid, Header, Card, Button } from 'semantic-ui-react'
+import { Grid, Header, Card, Button, Icon, Form } from 'semantic-ui-react'
+import Popup from 'reactjs-popup'
 
 const FileList = (props) => {
 
   const files = props.userFiles.map((file, i) => {
+
     const title = Object.keys(file)
-    console.log(file[title])
+    
     return(
       <div key={i}>
         <Card style={{backgroundColor: '#f3f3f3', margin: '20px', width: '315px'}}>
-          <Card.Content style={{height: '50px', backgroundColor: '#26547C'}}>
-          <Header style={{backgroundColor: '#26547C'}}>{title}</Header>
+          <Card.Content style={{height: '50px', backgroundColor: '#78C7E3'}}>
+            <Header style={{backgroundColor: '#78C7E3'}}>{title}</Header>
           </Card.Content> 
           <Card.Content style={{height: '150px', backgroundColor: '#DDDDDD'}}>
-            
           </Card.Content>
-
           <Card.Content extra>
+            <div >
+              <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                <div>
+                  <Button inverted color='green'  onClick={props.deleteFile.bind(null, i)}>Delete File</Button>
+                </div>
+                <div>
+                  <Popup
+                    trigger={<Button icon><Icon name='edit'></Icon></Button>}
+                    modal
+                    closeOnDocumentClick
+                  >
+                  {close => (
+                    <div>
+                    <h5>CHANGE THE NAME OF THE FILE</h5>
+                  
+                    <Form onSubmit={props.editFile}>
 
-          <div style={{display: 'flex', justifyContent: 'space-between'}}>
-            <div style={{alignSelf: 'center'}}>
-             <Button basic color='black' floated='right' onClick={props.deleteFile.bind(null, i)}>Delete</Button>
+                      <Form.Group >
+                      <Form.Field>
+                        File Name:<input type='text' name='name' onChange={props.handleChange}/>
+                      </Form.Field>
+                      </Form.Group>
+                      <Button>Update</Button> 
+
+                    </Form>
+                    <Button 
+                      onClick={() => {
+                        close();
+                      }}
+                    >
+                      Close
+                    </Button>
+                    </div>
+                    )}
+                  </Popup>
+                </div>
+              </div>
             </div>
-          </div>
-
           </Card.Content>
         </Card>
-       
       </div>
-      )
+    )
   })
+
   return (
     <div>
       <Header as='h3' textAlign='center'>Your Files</Header>
@@ -37,7 +68,7 @@ const FileList = (props) => {
         {files}
       </Grid>
     </div>
-    )
+  )
 }
 
 export default FileList

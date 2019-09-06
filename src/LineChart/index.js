@@ -55,18 +55,14 @@ const LineChart = (props) => {
 
   return (
     <div>
-      <XYPlot xType="ordinal" width={300} height={300} xDistance={100}>
-
-            <VerticalGridLines />
-            <HorizontalGridLines />
-            <XAxis />
-            <YAxis />
-            {dataFromCsv}
-            
+      <XYPlot xType="ordinal" width={550} height={500} xDistance={100}>
+        <VerticalGridLines />
+        <HorizontalGridLines />
+        <XAxis />
+        <YAxis />
+        {dataFromCsv}       
       </XYPlot>
-
       <DiscreteColorLegend orientation="horizontal" items={ITEMS} />
-
     </div>
   )
 }
