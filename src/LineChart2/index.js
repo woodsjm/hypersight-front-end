@@ -50,7 +50,7 @@ const LineChart2 = (props) => {
 
   // Store each rendered line series in an array
   const dataFromCsv = plottableData.map(arr => {
-    return <LineSeries data={arr} />
+    return <LineSeries animation data={arr} />
   })
 
   return (

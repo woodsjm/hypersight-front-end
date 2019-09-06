@@ -50,7 +50,7 @@ const BarGraph = (props) => {
 
   // Store each rendered bar series in an array
   const dataFromCsv = plottableData.map(arr => {
-    return <VerticalBarSeries data={arr} />
+    return <VerticalBarSeries animation data={arr} />
   })
 
   return (
