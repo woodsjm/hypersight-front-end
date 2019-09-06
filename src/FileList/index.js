@@ -24,7 +24,7 @@ const FileList = (props) => {
                 </div>
                 <div>
                   <Popup
-                    trigger={<Button icon><Icon name='edit'></Icon></Button>}
+                    trigger={<Button icon ><Icon name='edit'></Icon></Button>}
                     modal
                     closeOnDocumentClick
                   >
@@ -36,7 +36,7 @@ const FileList = (props) => {
 
                       <Form.Group >
                       <Form.Field>
-                        File Name:<input type='text' name='name' onChange={props.handleChange}/>
+                        File Name:<input type='text' name='newFileName' onChange={props.handleChangeEdit}/>
                       </Form.Field>
                       </Form.Group>
                       <Button>Update</Button> 

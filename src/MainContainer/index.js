@@ -9,7 +9,8 @@ class MainContainer extends React.Component {
       csvfile: undefined,
       filename: '',
       userFiles: [],
-      fileToEditIndex: null
+      fileToEditIndex: null,
+      newFileName: ''
     }
 
     this.updateData = this.updateData.bind(this);
@@ -88,6 +89,12 @@ class MainContainer extends React.Component {
     })
   }
 
+  handleChangeEdit = (e) => {
+    this.setState({
+      [e.currentTarget.name] : e.currentTarget.value
+    })
+  }
+
   handleTitle = (e) => {
     this.setState({
       filename : e.currentTarget.value
@@ -100,6 +107,10 @@ class MainContainer extends React.Component {
       complete: this.updateData,
       header: true
     });
+  }
+
+  setNameOfFileToEdit = (indexOfFileToEdit) => {
+    console.log("SET NAME OF FILE TO EDIT WORKING")
   }
 
 
@@ -135,7 +146,7 @@ class MainContainer extends React.Component {
           </div>
         </div>
         <div style={{margin: '15px'}}>
-          <FileList deleteFile={this.deleteFile} editFile={this.editFile} userFiles={this.state.userFiles}/>
+          <FileList handleChangeEdit={this.handleChangeEdit} deleteFile={this.deleteFile} editFile={this.editFile} userFiles={this.state.userFiles}/>
         </div>
       </div>
     );
