@@ -1,5 +1,6 @@
 import React from 'react';
 import Papa from 'papaparse';
+import FileList from '../FileList'
 
 class MainContainer extends React.Component {
   constructor() {
@@ -87,7 +88,7 @@ class MainContainer extends React.Component {
         <div style={{display: 'flex', flexDirection: 'column'}}>
           <div style={{width: '200px', alignSelf: 'center'}}>
 
-            <h2>Import CSV File</h2>
+            <h2 style={{margin: '15px'}}>Import CSV File</h2>
               <input
                 type="file" ref={input => {this.filesInput = input;}} name="file" placeholder={null}
                 onChange={this.handleChange}
@@ -115,7 +116,9 @@ class MainContainer extends React.Component {
           </div>
         </div>
 
-        <div>
+        <div style={{margin: '15px'}}>
+
+          <FileList userFiles={this.state.userFiles}/>
 
         </div>
 
