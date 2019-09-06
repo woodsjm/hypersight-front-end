@@ -46,7 +46,7 @@ class MainContainer extends React.Component {
   }
 
   addFile = async () => {
-    
+
     try {
 
       const registerResponse = await fetch('http://localhost:8000/upload', {
@@ -79,6 +79,35 @@ class MainContainer extends React.Component {
     this.setState({
       filename : e.currentTarget.value
     })
+  }
+
+  deleteFile = async (fileIndex) => {
+
+    const [ fileToDelete ] = Object.keys(this.state.userFiles[fileIndex])
+    
+    try {
+      const deleteUserFile = await fetch(`http://localhost:8000/delete/${fileToDelete}`, {
+        method: 'Delete',
+        credentials: 'include'
+      })
+
+      if (deleteUserFile.status !== 200) {
+        throw Error('Delete Request Did Not Work')
+      }
+
+      const deleteUserFileJson = await deleteUserFile.json()
+
+      const newUserFileArray = this.state.userFiles
+
+      newUserFileArray.splice(fileIndex, 1)
+
+      this.setState({
+        userFiles: newUserFileArray
+      })
+    } catch (err) {
+      console.log(err)
+      return err
+    }
   }
 
   render() {
@@ -118,7 +147,7 @@ class MainContainer extends React.Component {
 
         <div style={{margin: '15px'}}>
 
-          <FileList userFiles={this.state.userFiles}/>
+          <FileList deleteFile={this.deleteFile} userFiles={this.state.userFiles}/>
 
         </div>
 

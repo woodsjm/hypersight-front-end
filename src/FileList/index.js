@@ -20,7 +20,7 @@ const FileList = (props) => {
 
           <div style={{display: 'flex', justifyContent: 'space-between'}}>
             <div style={{alignSelf: 'center'}}>
-             <Button basic color='black' floated='right'>Delete</Button>
+             <Button basic color='black' floated='right' onClick={props.deleteFile.bind(null, i)}>Delete</Button>
             </div>
           </div>
 
