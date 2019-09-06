@@ -10,7 +10,7 @@ class MainContainer extends React.Component {
       filename: '',
       userFiles: [],
       fileToEditIndex: null,
-      newFileName: ''
+      new_filename: ''
     }
 
     this.updateData = this.updateData.bind(this);
@@ -67,8 +67,31 @@ class MainContainer extends React.Component {
     }
   }
 
-  editFile = (fileToEditIndex) => {
-    console.log(fileToEditIndex, "HERE IS THE FILE TO EDIT")
+  editFile = async (fileIndex) => {
+    const [ fileToEdit ] = Object.keys(this.state.userFiles[fileIndex])
+
+    try {
+      const editUserFile = await fetch(`http://localhost:8000/edit/${fileToEdit}`, {
+        method: 'PUT',
+        credentials: 'include',
+        body: JSON.stringify(this.state.new_filename),
+        headers: {
+          'Content-Type': 'application/json' 
+        }
+      })
+
+      if (editUserFile.status !== 200) {
+        throw Error('Edit Request Did Not Work')
+      }
+
+      const editUserFileJson = await editUserFile.json()
+
+      this.getUserFiles()
+
+    } catch (err) {
+      console.log(err)
+      return err
+    }
   }
 
   getUserFiles = async () => {
@@ -109,10 +132,12 @@ class MainContainer extends React.Component {
     });
   }
 
-  setNameOfFileToEdit = (indexOfFileToEdit) => {
-    console.log("SET NAME OF FILE TO EDIT WORKING")
+  setName = (nameOfSelectedFile) => {
+    console.log("SET NAME WORKING")
+    this.setState({
+      new_filename: nameOfSelectedFile
+    })
   }
-
 
   updateData(result) {
     var data = result.data;
@@ -128,7 +153,9 @@ class MainContainer extends React.Component {
           <div style={{width: '200px', alignSelf: 'center'}}>
             <h2 style={{margin: '15px'}}>Import CSV File</h2>
             <input
-                type="file" ref={input => {this.filesInput = input;}} name="file" placeholder={null}
+                type="file" 
+                ref={input => {this.filesInput = input;}} 
+                name="file" placeholder={null}
                 onChange={this.handleChange}
             />
             <br/>
@@ -139,14 +166,24 @@ class MainContainer extends React.Component {
             <form>
               <label>
                 Give your file a title:
-                <input type="text" name="filename" value={this.state.filename} onChange={this.handleTitle}/>
+                <input 
+                  type="text" 
+                  name="filename" 
+                  value={this.state.filename} 
+                  onChange={this.handleTitle}/>
               </label>
             </form>
             <button onClick={this.addFile}> Test Database</button>
           </div>
         </div>
         <div style={{margin: '15px'}}>
-          <FileList handleChangeEdit={this.handleChangeEdit} deleteFile={this.deleteFile} editFile={this.editFile} userFiles={this.state.userFiles}/>
+          <FileList 
+            handleChangeEdit={this.handleChangeEdit} 
+            deleteFile={this.deleteFile} 
+            editFile={this.editFile} 
+            userFiles={this.state.userFiles}
+            setName={this.setName}
+            name={this.state.new_filename}/>
         </div>
       </div>
     );

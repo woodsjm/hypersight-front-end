@@ -24,7 +24,7 @@ const FileList = (props) => {
                 </div>
                 <div>
                   <Popup
-                    trigger={<Button icon ><Icon name='edit'></Icon></Button>}
+                    trigger={<Button icon ><Icon onClick={props.setName.bind(null, title)} name='edit'></Icon></Button>}
                     modal
                     closeOnDocumentClick
                   >
@@ -32,11 +32,11 @@ const FileList = (props) => {
                     <div>
                     <h5>CHANGE THE NAME OF THE FILE</h5>
                   
-                    <Form onSubmit={props.editFile}>
+                    <Form onSubmit={props.editFile.bind(null, i)}>
 
                       <Form.Group >
                       <Form.Field>
-                        File Name:<input type='text' name='newFileName' onChange={props.handleChangeEdit}/>
+                        File Name:<input type='text' value={props.name} name='new_filename' onChange={props.handleChangeEdit}/>
                       </Form.Field>
                       </Form.Group>
                       <Button>Update</Button> 
