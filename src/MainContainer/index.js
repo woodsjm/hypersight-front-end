@@ -53,8 +53,6 @@ class MainContainer extends React.Component {
         throw Error('Delete Request Did Not Work')
       }
 
-      const deleteUserFileJson = await deleteUserFile.json()
-
       const newUserFileArray = this.state.userFiles
       newUserFileArray.splice(fileIndex, 1)
       this.setState({
@@ -83,8 +81,6 @@ class MainContainer extends React.Component {
       if (editUserFile.status !== 200) {
         throw Error('Edit Request Did Not Work')
       }
-
-      const editUserFileJson = await editUserFile.json()
 
       this.getUserFiles()
 
