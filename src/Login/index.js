@@ -46,9 +46,9 @@ class Login extends Component {
           <Form onSubmit={this.handleSubmit}>
               <Segment stacked>
               Username:
-              <Form.Input fluid icon='mail' iconPosition='left' placeholder='username' type='text' name='username' onChange={this.handleChange}/>
+              <Form.Input fluid icon='user' iconPosition='left' placeholder='username' type='text' name='username' onChange={this.handleChange}/>
               password:
-              <Form.Input fluid icon='lock' iconPosition='left' type='password' name='password' onChange={this.handleChange}/>
+              <Form.Input fluid icon='lock' iconPosition='left' placeholder='password' type='password' name='password' onChange={this.handleChange}/>
               <Button fluid size='large' type='sumbit'>Login</Button>
               <Message>
                 Not a member? <Link to='/register'>Register</Link>
