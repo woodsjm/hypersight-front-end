@@ -18,8 +18,6 @@ class App extends Component {
         method: 'GET'
       });
 
-      console.log(responseGetFiles, 'responseGetFiles')
-
       const parsedResponse = await responseGetFiles.json();
 
       return parsedResponse
