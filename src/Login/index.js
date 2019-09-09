@@ -21,7 +21,8 @@ class Login extends Component {
     const login = this.props.logIn(this.state);
 
     login.then((data) => {
-      
+        
+
       console.log(data.status, "HERE IS THE STATUS")
       if(data.status.message === 'Successfully logged in'){
         this.props.history.push('/files')
