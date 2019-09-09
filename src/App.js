@@ -31,7 +31,6 @@ class App extends Component {
   }
 
   logIn = async (loginInfo) => {
-
     try {
 
       const loginResponse = await fetch('http://localhost:8000/login', {
@@ -62,15 +61,62 @@ class App extends Component {
       console.log(err);
     }
   }
+
+  logOut = async () => {
+    try{ 
+      const logOutResponse = await fetch('http://localhost:8000/logout', {
+        method: 'POST',
+        credentials: 'include'
+      })
+
+      const parsedResponse = await logOutResponse.json();
+
+
+      return parsedResponse
+      
+     } catch (err) {
+      console.log(err)
+      return err
+    }
+  }
+
+  register = async (data) => {
+     try {
+
+      const registerResponse = await fetch('http://localhost:8000/register', {
+        method: 'POST',
+        credentials: 'include', 
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json' 
+        }
+      })
+
+      const parsedResponse = await registerResponse.json();
+      
+      
+      // this.setState(() => {
+      //   return {
+      //     ...parsedResponse.data,
+      //     loading: false
+      //   }
+      // })
+      
+      return parsedResponse
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   render() {
     return (
       <div className="App">
       <BrowserRouter>
         <Switch>
           <Route exact path="/" render={(props) => <Login {...props} logIn={this.logIn} />} />
-          <Route exact path="/dataviz" render={(props) => <DataViz {...props} /> } />
-          <Route exact path='/files' render={(props) => <MainContainer {...props} /> } />
-          <Route exact path='/register' render={(props) => <Register {...props} /> } />
+          <Route exact path="/dataviz" render={(props) => <DataViz {...props} logOut={this.logOut} /> } />
+          <Route exact path='/files' render={(props) => <MainContainer {...props} logOut={this.logOut} /> } />
+          <Route exact path='/register' render={(props) => <Register {...props} register={this.register}/> } />
         </Switch>
       </BrowserRouter>
       </div>

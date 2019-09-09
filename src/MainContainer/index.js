@@ -1,10 +1,12 @@
 import React from 'react';
 import Papa from 'papaparse';
 import FileList from '../FileList'
+import { Menu } from 'semantic-ui-react'
+import { Link } from 'react-router-dom';
 
 class MainContainer extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       csvfile: undefined,
       filename: '',
@@ -33,6 +35,8 @@ class MainContainer extends React.Component {
       })
 
       const parsedResponse = await registerResponse.json();
+
+      this.getUserFiles()
       
       return parsedResponse
     } catch (err) {
@@ -88,6 +92,7 @@ class MainContainer extends React.Component {
       console.log(err)
       return err
     }
+
   }
 
   getUserFiles = async () => {
@@ -111,6 +116,24 @@ class MainContainer extends React.Component {
   handleChangeEdit = (e) => {
     this.setState({
       [e.currentTarget.name] : e.currentTarget.value
+    })
+  }
+
+
+
+  handleLogOut = async (data) => {
+    
+    const logout = this.props.logOut();
+
+    logout.then((data) => {
+      console.log(data, "HERE IS THE DATA IN LOGOUT")
+      if(data.status.message === 'User successfully logged out'){
+        this.props.history.push('/')
+      } else {
+        console.log(data)
+      }
+    }).catch((err) => {
+      console.log(err)
     })
   }
 
@@ -142,9 +165,17 @@ class MainContainer extends React.Component {
     })
   }
 
-  render() {
+  render(props) {
+    console.log(props, "HERE IS PROPS")
     return (
       <div >
+        <Menu pointing secondary vertical>
+          <Menu.Item as={ Link } to="/">Switch User</Menu.Item>
+          <Menu.Item as={ Link } to="/dataviz">Data Visualization</Menu.Item>
+          <Menu.Item as={ Link } to="/register">Create New User</Menu.Item>
+          <Menu.Item onClick={this.handleLogOut}>Logout</Menu.Item>
+        </Menu>
+
         <div style={{display: 'flex', flexDirection: 'column'}}>
           <div style={{width: '200px', alignSelf: 'center'}}>
             <h2 style={{margin: '15px'}}>Import CSV File</h2>

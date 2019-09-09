@@ -8,7 +8,7 @@ class Login extends Component {
     super();
 
     this.state = {
-      email: '',
+      username: '',
       password: ''
     }
   }
@@ -22,7 +22,7 @@ class Login extends Component {
 
     login.then((data) => {
       console.log(data.status, "HERE IS THE STATUS")
-      if(data.status.message === 'Success'){
+      if(data.status.message === 'Successfully logged in'){
         this.props.history.push('/files')
       } else {
         console.log(data, this.props)
@@ -45,8 +45,8 @@ class Login extends Component {
           </Header>
           <Form onSubmit={this.handleSubmit}>
               <Segment stacked>
-              Email:
-              <Form.Input fluid icon='mail' iconPosition='left' placeholder='email' type='text' name='email' onChange={this.handleChange}/>
+              Username:
+              <Form.Input fluid icon='mail' iconPosition='left' placeholder='username' type='text' name='username' onChange={this.handleChange}/>
               password:
               <Form.Input fluid icon='lock' iconPosition='left' type='password' name='password' onChange={this.handleChange}/>
               <Button fluid size='large' type='sumbit'>Login</Button>
