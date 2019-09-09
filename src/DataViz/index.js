@@ -35,7 +35,7 @@ class DataViz extends React.Component {
   }
 
   getFiles = async () => {
-    const responseGetFiles = await fetch('http://localhost:8000/prepdata', {
+    const responseGetFiles = await fetch(`${process.env.REACT_APP_API_URL}/prepdata`, {
       credentials: 'include',
       method: 'GET'
     });

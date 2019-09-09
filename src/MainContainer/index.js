@@ -25,7 +25,7 @@ class MainContainer extends React.Component {
   addFile = async () => {
     try {
 
-      const registerResponse = await fetch('http://localhost:8000/upload', {
+      const registerResponse = await fetch(`${process.env.REACT_APP_API_URL}/upload`, {
         method: 'POST',
         credentials: 'include', 
         body: JSON.stringify(this.state),
@@ -48,7 +48,7 @@ class MainContainer extends React.Component {
     const [ fileToDelete ] = Object.keys(this.state.userFiles[fileIndex])
     
     try {
-      const deleteUserFile = await fetch(`http://localhost:8000/delete/${fileToDelete}`, {
+      const deleteUserFile = await fetch(`${process.env.REACT_APP_API_URL}/delete/${fileToDelete}`, {
         method: 'Delete',
         credentials: 'include'
       })
@@ -73,7 +73,7 @@ class MainContainer extends React.Component {
     const [ fileToEdit ] = Object.keys(this.state.userFiles[fileIndex])
 
     try {
-      const editUserFile = await fetch(`http://localhost:8000/edit/${fileToEdit}`, {
+      const editUserFile = await fetch(`${process.env.REACT_APP_API_URL}/edit/${fileToEdit}`, {
         method: 'PUT',
         credentials: 'include',
         body: JSON.stringify(this.state.new_filename),
@@ -92,11 +92,10 @@ class MainContainer extends React.Component {
       console.log(err)
       return err
     }
-
   }
 
   getUserFiles = async () => {
-    const responseGetFiles = await fetch('http://localhost:8000/prepdata', {
+    const responseGetFiles = await fetch(`${process.env.REACT_APP_API_URL}/prepdata`, {
       credentials: 'include',
       method: 'GET'
     });
@@ -119,10 +118,7 @@ class MainContainer extends React.Component {
     })
   }
 
-
-
   handleLogOut = async (data) => {
-    
     const logout = this.props.logOut();
 
     logout.then((data) => {
