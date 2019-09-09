@@ -122,7 +122,7 @@ class MainContainer extends React.Component {
     const logout = this.props.logOut();
 
     logout.then((data) => {
-      console.log(data, "HERE IS THE DATA IN LOGOUT")
+      
       if(data.status.message === 'User successfully logged out'){
         this.props.history.push('/')
       } else {
