@@ -19,6 +19,7 @@ class Register extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
+    
     const register = this.props.register(this.state);
 
     register.then((data) => {

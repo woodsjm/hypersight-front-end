@@ -79,6 +79,7 @@ class App extends Component {
   }
 
   register = async (data) => {
+    console.log(data, "HERE IS THE DATA BEING SENT OVER")
      try {
 
       const registerResponse = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
@@ -92,7 +93,7 @@ class App extends Component {
 
       const parsedResponse = await registerResponse.json();
       
-      
+      console.log(parsedResponse, "HERE IS THE PARSED RESPONSE")
       // this.setState(() => {
       //   return {
       //     ...parsedResponse.data,
