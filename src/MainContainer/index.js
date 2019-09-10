@@ -95,7 +95,7 @@ class MainContainer extends React.Component {
   }
 
   getUserFiles = async () => {
-    const responseGetFiles = await fetch(`https://cors-anywhere.herokuapp.com/${process.env.REACT_APP_API_URL}/prepdata`, {
+    const responseGetFiles = await fetch(`${process.env.REACT_APP_API_URL}/prepdata`, {
       credentials: 'include',
       method: 'GET'
     });
