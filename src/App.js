@@ -81,7 +81,7 @@ class App extends Component {
   register = async (data) => {
      try {
 
-      const registerResponse = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
+      const registerResponse = await fetch(`https://cors-anywhere.herokuapp.com/${process.env.REACT_APP_API_URL}/register`, {
         method: 'POST',
         credentials: 'include', 
         body: JSON.stringify(data),
