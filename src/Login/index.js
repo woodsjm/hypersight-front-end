@@ -68,16 +68,16 @@ class Login extends Component {
                 inverted
               >
                 <Menu.Item style={{height: '40px'}}></Menu.Item>
-                <Menu.Item style={{textAlign: 'center'}} name="login" as={Link} to="/your_route">
+                <Menu.Item style={{textAlign: 'center'}} name="login" as={Link} to="/">
                   <Icon style={{float: 'left'}} name="user circle outline" />Switch User
                 </Menu.Item>
-                <Menu.Item style={{textAlign: 'center'}} name="home" as={Link} to="/your_route">
+                <Menu.Item style={{textAlign: 'center'}} name="home" as={Link} to="/files">
                   <Icon style={{float: 'left'}} name="folder outline" />Upload Files
                 </Menu.Item>
-                <Menu.Item style={{textAlign: 'center'}} name="home" as={Link} to="/your_route">
+                <Menu.Item style={{textAlign: 'center'}} name="home" as={Link} to="/dataviz">
                   <Icon style={{float: 'left'}} name="area graph" />Data Visualization
                 </Menu.Item>
-                <Menu.Item style={{textAlign: 'center'}} name="home" as={Link} to="/your_route">
+                <Menu.Item style={{textAlign: 'center'}} name="home" as={Link} to="/register">
                   <Icon style={{float: 'left'}} name="cog" />Create New USer
                 </Menu.Item>
               </Sidebar>
