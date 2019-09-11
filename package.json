@@ -13,7 +13,8 @@
     "reactjs-popup": "^1.5.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.88.0",
-    "shards-react": "^1.0.3"
+    "shards-react": "^1.0.3",
+    "three.js": "^0.77.1"
   },
   "scripts": {
     "start": "react-scripts start",
