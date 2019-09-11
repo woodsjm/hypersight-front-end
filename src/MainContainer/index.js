@@ -1,7 +1,7 @@
 import React from 'react';
 import Papa from 'papaparse';
 import FileList from '../FileList'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Button, Icon, Sidebar, Segment } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 class MainContainer extends React.Component {
@@ -12,7 +12,8 @@ class MainContainer extends React.Component {
       filename: '',
       userFiles: [],
       fileToEditIndex: null,
-      new_filename: ''
+      new_filename: '',
+      visible: false
     }
 
     this.updateData = this.updateData.bind(this);
@@ -161,53 +162,97 @@ class MainContainer extends React.Component {
     })
   }
 
+  toggleVisible = () => {
+    this.setState({
+        visible: !this.state.visible
+    })
+  }
+
   render(props) {
     console.log(props, "HERE IS PROPS")
     return (
       <div >
-        <Menu pointing secondary vertical>
-          <Menu.Item as={ Link } to="/">Switch User</Menu.Item>
-          <Menu.Item as={ Link } to="/dataviz">Data Visualization</Menu.Item>
-          <Menu.Item as={ Link } to="/register">Create New User</Menu.Item>
-          <Menu.Item onClick={this.handleLogOut}>Logout</Menu.Item>
-        </Menu>
 
-        <div style={{display: 'flex', flexDirection: 'column'}}>
-          <div style={{width: '200px', alignSelf: 'center'}}>
-            <h2 style={{margin: '15px'}}>Import CSV File</h2>
-            <input
-                type="file" 
-                ref={input => {this.filesInput = input;}} 
-                name="file" placeholder={null}
-                onChange={this.handleChange}
-            />
-            <br/>
-            <br/>
-            <button onClick={this.importCSV}> UPLOAD</button>
-            <br/>
-            <br/>
-            <form>
-              <label>
-                Give your file a title:
-                <input 
-                  type="text" 
-                  name="filename" 
-                  value={this.state.filename} 
-                  onChange={this.handleTitle}/>
-              </label>
-            </form>
-            <button onClick={this.addFile}> Test Database</button>
-          </div>
-        </div>
-        <div style={{margin: '15px'}}>
-          <FileList 
-            handleChangeEdit={this.handleChangeEdit} 
-            deleteFile={this.deleteFile} 
-            editFile={this.editFile} 
-            userFiles={this.state.userFiles}
-            setName={this.setName}
-            name={this.state.new_filename}/>
-        </div>
+        <Menu inverted fixed="top">
+                <Button className="item" onClick={this.toggleVisible}>
+                  <i className="sidebar icon" />
+                </Button>
+               <Menu.Item>
+                <img src='https://media.giphy.com/media/l41m3025MFqt6xXuo/giphy.gif' style={{width: '50px', border: '1px solid'}} />
+               </Menu.Item>
+               <Menu.Item style={{float: 'right'}} name="home" as={Link} to="/home">
+                  <Icon name="home" />
+               </Menu.Item>
+            </Menu>
+            
+            <Sidebar.Pushable as={Segment}>
+               
+               <Sidebar
+                visible={this.state.visible}
+                as={Menu}
+                animation="push"
+                width="thin"
+                icon="labeled"
+                vertical
+                inverted
+              >
+                <Menu.Item style={{height: '40px'}}></Menu.Item>
+                <Menu.Item style={{textAlign: 'center'}} name="login" as={Link} to="/">
+                  <Icon style={{float: 'left'}} name="user circle outline" />Switch User
+                </Menu.Item>
+                <Menu.Item style={{textAlign: 'center'}} name="home" as={Link} to="/files">
+                  <Icon style={{float: 'left'}} name="folder outline" />Upload Files
+                </Menu.Item>
+                <Menu.Item style={{textAlign: 'center'}} name="home" as={Link} to="/dataviz">
+                  <Icon style={{float: 'left'}} name="area graph" />Data Visualization
+                </Menu.Item>
+                <Menu.Item style={{textAlign: 'center'}} name="home" as={Link} to="/register">
+                  <Icon style={{float: 'left'}} name="cog" />Create New USer
+                </Menu.Item>
+              </Sidebar>
+              
+              <Sidebar.Pusher>
+                <Segment basic style={{height: '100vh'}}>
+                    <div style={{height: "50px"}}></div>
+                        <div style={{display: 'flex', flexDirection: 'column'}}>
+                              <div style={{width: '200px', alignSelf: 'center'}}>
+                                <h2 style={{margin: '15px'}}>Import CSV File</h2>
+                                <input
+                                    type="file" 
+                                    ref={input => {this.filesInput = input;}} 
+                                    name="file" placeholder={null}
+                                    onChange={this.handleChange}
+                                />
+                                <br/>
+                                <br/>
+                                <button onClick={this.importCSV}> UPLOAD</button>
+                                <br/>
+                                <br/>
+                                <form>
+                                  <label>
+                                    Give your file a title:
+                                    <input 
+                                      type="text" 
+                                      name="filename" 
+                                      value={this.state.filename} 
+                                      onChange={this.handleTitle}/>
+                                  </label>
+                                </form>
+                                <button onClick={this.addFile}> Test Database</button>
+                              </div>
+                            </div>
+                            <div style={{margin: '15px'}}>
+                              <FileList 
+                                handleChangeEdit={this.handleChangeEdit} 
+                                deleteFile={this.deleteFile} 
+                                editFile={this.editFile} 
+                                userFiles={this.state.userFiles}
+                                setName={this.setName}
+                                name={this.state.new_filename}/>
+                            </div>
+                </Segment>
+              </Sidebar.Pusher>
+            </Sidebar.Pushable>
       </div>
     );
   }
