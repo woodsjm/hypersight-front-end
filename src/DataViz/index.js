@@ -140,7 +140,7 @@ class DataViz extends React.Component {
                 vertical
                 inverted
               >
-                <Menu.Item style={{height: '40px'}}></Menu.Item>
+                <Menu.Item style={{height: '60px'}}></Menu.Item>
                 <Menu.Item style={{textAlign: 'center'}} name="login" as={Link} to="/">
                   <Icon style={{float: 'left'}} name="user circle outline" />Switch User
                 </Menu.Item>
