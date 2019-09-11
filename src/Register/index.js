@@ -85,12 +85,12 @@ class Register extends Component {
               
               <Sidebar.Pusher>
                 <Segment basic style={{height: '100vh'}}>
-                    <div style={{height: "50px"}}></div>
+                    <div style={{height: "1px"}}></div>
                         <div >
                           <Grid textAlign='center' verticalAlign='middle' style={{ height: '100vh'}}>
                           <Grid.Column style={{maxWidth: 450}}>
                             <Header as='h2' textAlign='center'>
-                              Register
+                              Create New Account
                             </Header>
                             <Form onSubmit={this.handleSubmit}>
                                 <Segment stacked>
@@ -103,10 +103,10 @@ class Register extends Component {
                               
 
                                 <a href='/'>
-                                <Button fluid size='large' type='sumbit'>Register</Button>
+                                <Button fluid size='large' type='sumbit'>Submit</Button>
                                 </a>
                                 <Message>
-                                  Already a member? <Link to='/'>Login</Link>
+                                  Already a registered user? <Link to='/'>Login</Link>
                                 </Message>
                               </Segment>
                             </Form>

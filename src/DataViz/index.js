@@ -13,7 +13,7 @@ import FileDropdown2 from '../FileDropdown2'
 import VisualizationDropdown from '../VisualizationDropdown'
 import VisualizationDropdown2 from '../VisualizationDropdown2'
 
-import { Menu, Button, Icon, Sidebar, Segment } from 'semantic-ui-react'
+import { Menu, Button, Icon, Sidebar, Segment, Header, Divider } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 
@@ -158,8 +158,13 @@ class DataViz extends React.Component {
                     <div style={{display: 'flex', flexDirection: 'column'}}>
 
                         <div>
-                          <h1>Here is where the vizualizations will go</h1>
+                          <Header as='h1' icon textAlign='center'>
+                            <Icon name='area chart' circular />
+                            <Header.Content>Data Visualizations</Header.Content>
+                          </Header>
                         </div>
+
+                        <Divider ></Divider>
 
                         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>
                             <div>
@@ -175,6 +180,9 @@ class DataViz extends React.Component {
                               </div>
                               {this.state.data === undefined || this.state.data.length === 0 || this.state.selectedFileIndex === undefined ? null : visualization}
                             </div>
+
+                          
+
                             <div>
                               <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>
                                 <VisualizationDropdown2 

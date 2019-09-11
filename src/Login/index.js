@@ -84,9 +84,9 @@ class Login extends Component {
               
               <Sidebar.Pusher>
                 <Segment basic style={{height: '100vh'}}>
-                    <div style={{height: "50px"}}></div>
+                    <div style={{height: "1px"}}></div>
                         <div >
-                        <Grid textAlign='center' verticalAlign='middle' >
+                        <Grid textAlign='center' verticalAlign='middle' style={{ height: '100vh'}}>
                             <Grid.Column style={{maxWidth: 450}}>
                               <Header as='h1' textAlign='center'>
                               HYPERSIGHT
@@ -100,11 +100,11 @@ class Login extends Component {
                                 <Segment stacked>
                                   Username:
                                   <Form.Input fluid icon='user' iconPosition='left' placeholder='username' type='text' name='username' onChange={this.handleChange}/>
-                                  password:
+                                  Password:
                                   <Form.Input fluid icon='lock' iconPosition='left' placeholder='password' type='password' name='password' onChange={this.handleChange}/>
                                   <Button fluid size='large' type='sumbit'>Login</Button>
                                   <Message>
-                                    Not a member? <Link to='/register'>Register</Link>
+                                    Not a registered user? <Link to='/register'>Register</Link>
                                   </Message>
                                 </Segment>
                               </Form>
