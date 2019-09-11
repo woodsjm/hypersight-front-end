@@ -1,7 +1,7 @@
 import React from 'react';
 import Papa from 'papaparse';
 import FileList from '../FileList'
-import { Menu, Button, Icon, Sidebar, Segment } from 'semantic-ui-react'
+import { Menu, Button, Icon, Sidebar, Segment, Divider, Header } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 class MainContainer extends React.Component {
@@ -215,32 +215,62 @@ class MainContainer extends React.Component {
                 <Segment basic style={{height: '100vh'}}>
                     <div style={{height: "50px"}}></div>
                         <div style={{display: 'flex', flexDirection: 'column'}}>
+                            
                               <div style={{width: '200px', alignSelf: 'center'}}>
-                                <h2 style={{margin: '15px'}}>Import CSV File</h2>
+                                
+
+
+                                <div style={{display: 'flex', flexDirection: 'column', border: '5px solid grey', width: '350px', alignSelf: 'center'}}>
+
+                                <h1 style={{margin: '15px', width: '250px', alignSelf: 'center'}}>Upload CSV Files</h1>
+
+                                <div style={{display: 'flex'}} >
+                                <div style={{margin: '20px', float: 'left'}}>
                                 <input
                                     type="file" 
                                     ref={input => {this.filesInput = input;}} 
                                     name="file" placeholder={null}
                                     onChange={this.handleChange}
                                 />
-                                <br/>
-                                <br/>
-                                <button onClick={this.importCSV}> UPLOAD</button>
-                                <br/>
-                                <br/>
+                                </div>
+                                </div>
+
+                                <div style={{display: 'flex'}} >
+                                <div style={{margin: '20px', float: 'left'}}>
+                                <button onClick={this.importCSV}> Import</button>
+                                </div>
+                                </div>
+
+                                <div style={{display: 'flex'}} >
+                                <div style={{marginRight: '20px', marginLeft: '20px', marginTop: '5px', float: 'left'}}>
+                                <p>Name the file:</p>
+                                </div>
+                                </div>
+
+                                <div style={{display: 'flex'}} >
+                                <div style={{marginRight: '20px', marginLeft: '20px', float: 'left'}}>
                                 <form>
-                                  <label>
-                                    Give your file a title:
                                     <input 
                                       type="text" 
                                       name="filename" 
                                       value={this.state.filename} 
                                       onChange={this.handleTitle}/>
-                                  </label>
+                                  
                                 </form>
-                                <button onClick={this.addFile}> Test Database</button>
+                                </div>
+                                </div>
+
+                                <div style={{margin: '20px'}}>
+                                <button onClick={this.addFile}> Submit</button>
+                                </div>
+
+
+                                </div>
+
+                                
                               </div>
                             </div>
+                            
                             <div style={{margin: '15px'}}>
                               <FileList 
                                 handleChangeEdit={this.handleChangeEdit} 

@@ -63,7 +63,7 @@ const FileList = (props) => {
 
   return (
     <div>
-      <Header as='h3' textAlign='center'>Your Files</Header>
+      
       <Grid columns={2} padded>
         {files}
       </Grid>
