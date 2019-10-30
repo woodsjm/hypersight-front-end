@@ -192,6 +192,7 @@ class MainContainer extends React.Component {
 
             
                 <Sidebar.Pushable as={Segment}>
+
                
                   <Sidebar
                     visible={this.state.visible}
@@ -202,6 +203,12 @@ class MainContainer extends React.Component {
                     vertical
                     inverted
                   >
+
+                    {/* 
+                    -------------------
+                    Sidebar Menu Items
+                    -------------------
+                  */}
 
                     <Menu.Item style={{height: '60px'}}></Menu.Item>
 
@@ -247,10 +254,10 @@ class MainContainer extends React.Component {
 
                             <p>
                                In the example table below, you will notice there are both row headers and column headers. 
-                               The row headers begin on row two, and the column headers begin on column two. Moreover, there are a limited number of rows and columns. A legend will be generated for the given row headers (column headers will be your X-values). Currently, Hypersight can handle a maximum of roughly 4 rows and a maximum of roughly 8 columns. </p>
+                               The row headers begin on row two, and the column headers begin on column two. Moreover, there are a limited number of rows and columns. A legend will be generated for the given row headers (column headers will be your x-values). Currently, Hypersight can handle a maximum of 4 rows and a maximum of 8 columns. </p>
 
                             <p>
-                               Lastly, you will notice that the range of numerical values is limited. A range that is too wide will lead to improper scaling when the data is plotted. Future bug fixes - to the scaling issue - are in the pipeline.
+                               Lastly, you will notice that the range of numerical values is limited. A range that is too wide will lead to improper scaling when the data is plotted. Future bug fixes, to the scaling issue, are in the pipeline.
                                 </p>
 
                             <div style={{margin: '10px'}}></div>
