@@ -1,7 +1,8 @@
 import React from 'react';
 import Papa from 'papaparse';
 import FileList from '../FileList'
-import { Menu, Button, Icon, Sidebar, Segment, Divider, Header, Grid, Table } from 'semantic-ui-react'
+import './MainContainer.css'
+import { Menu, Button, Icon, Sidebar, Segment, Divider, Header, Grid, Table, Label } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 class MainContainer extends React.Component {
@@ -251,6 +252,48 @@ class MainContainer extends React.Component {
                             <p>
                                Lastly, you will notice that the range of numerical values is limited. A range that is too wide will lead to improper scaling when the data is plotted. Future bug fixes - to the scaling issue - are in the pipeline.
                                 </p>
+
+                            <div style={{margin: '10px'}}></div>
+                              <Table celled>
+                                <Table.Header>
+                                  <Table.Row>
+                                    <Table.HeaderCell></Table.HeaderCell>
+                                    <Table.HeaderCell>Boeing 737</Table.HeaderCell>
+                                    <Table.HeaderCell>Airbus A320</Table.HeaderCell>
+                                    <Table.HeaderCell>CRJ-400 (proposed)</Table.HeaderCell>
+                                    <Table.HeaderCell>Boeing 727 (proposed)</Table.HeaderCell>
+                                  </Table.Row>
+                                </Table.Header>
+
+
+
+                                <Table.Body>
+                                  <Table.Row>
+                                    <Table.Cell>
+                                      Bids
+                                    </Table.Cell>
+                                    <Table.Cell>101</Table.Cell>
+                                    <Table.Cell>107</Table.Cell>
+                                    <Table.Cell>105</Table.Cell>
+                                    <Table.Cell>121</Table.Cell>
+                                  </Table.Row>
+                                  <Table.Row>
+                                    <Table.Cell>Economy</Table.Cell>
+                                    <Table.Cell>125</Table.Cell>
+                                    <Table.Cell>150</Table.Cell>
+                                    <Table.Cell>120</Table.Cell>
+                                    <Table.Cell>145</Table.Cell>
+                                  </Table.Row>
+                                  <Table.Row>
+                                    <Table.Cell>Total Passengers</Table.Cell>
+                                    <Table.Cell>200</Table.Cell>
+                                    <Table.Cell>220</Table.Cell>
+                                    <Table.Cell>189</Table.Cell>
+                                    <Table.Cell>176</Table.Cell>
+                                  </Table.Row>
+                                </Table.Body>
+                              </Table>
+
                             </div>
                           </div>
 
