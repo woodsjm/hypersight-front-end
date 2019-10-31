@@ -3,7 +3,7 @@ HYPERSIGHT
 
 ## Functionality
 
-Hypersight generates data visualizations from uploaded CSV files, while utilizing the React-Viz data vizualization library. It currently supports bar graphs and line charts.
+Hypersight generates data visualizations from uploaded CSV files, while utilizing the React-vis data visualization library. It currently supports bar graphs and line charts.
 
 ## Visit
 
