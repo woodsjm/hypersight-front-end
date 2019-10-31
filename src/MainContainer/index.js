@@ -27,7 +27,7 @@ class MainContainer extends React.Component {
   addFile = async () => {
     try {
 
-      const registerResponse = await fetch(`${process.env.REACT_APP_API_URL}/upload`, {
+      const registerResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/upload`, {
         method: 'POST',
         credentials: 'include', 
         body: JSON.stringify(this.state),
@@ -50,7 +50,7 @@ class MainContainer extends React.Component {
     const [ fileToDelete ] = Object.keys(this.state.userFiles[fileIndex])
     
     try {
-      const deleteUserFile = await fetch(`${process.env.REACT_APP_API_URL}/delete/${fileToDelete}`, {
+      const deleteUserFile = await fetch(`${process.env.REACT_APP_API_URL}/api/delete/${fileToDelete}`, {
         method: 'Delete',
         credentials: 'include'
       })
@@ -75,7 +75,7 @@ class MainContainer extends React.Component {
     const [ fileToEdit ] = Object.keys(this.state.userFiles[fileIndex])
 
     try {
-      const editUserFile = await fetch(`${process.env.REACT_APP_API_URL}/edit/${fileToEdit}`, {
+      const editUserFile = await fetch(`${process.env.REACT_APP_API_URL}/api/edit/${fileToEdit}`, {
         method: 'PUT',
         credentials: 'include',
         body: JSON.stringify(this.state.new_filename),
@@ -97,7 +97,7 @@ class MainContainer extends React.Component {
   }
 
   getUserFiles = async () => {
-    const responseGetFiles = await fetch(`${process.env.REACT_APP_API_URL}/prepdata`, {
+    const responseGetFiles = await fetch(`${process.env.REACT_APP_API_URL}/api/prepdata`, {
       credentials: 'include',
       method: 'GET'
     });

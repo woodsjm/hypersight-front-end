@@ -1,12 +1,9 @@
 import React from 'react'
 
-
 import BarGraph from '../BarGraph'
 import BarGraph2 from '../BarGraph2'
 import LineChart from '../LineChart'
 import LineChart2 from '../LineChart2'
-
-
 
 import FileDropdown from '../FileDropdown'
 import FileDropdown2 from '../FileDropdown2'
@@ -36,7 +33,7 @@ class DataViz extends React.Component {
   }
 
   getFiles = async () => {
-    const responseGetFiles = await fetch(`${process.env.REACT_APP_API_URL}/prepdata`, {
+    const responseGetFiles = await fetch(`${process.env.REACT_APP_API_URL}/api/prepdata`, {
       credentials: 'include',
       method: 'GET'
     });
@@ -93,7 +90,7 @@ class DataViz extends React.Component {
   }
 
   render(props){
-    // Initialize variables to store selected visualizations
+    
     let visualization;
     let visualization2;
 
