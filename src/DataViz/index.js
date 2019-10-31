@@ -108,7 +108,7 @@ class DataViz extends React.Component {
     // Let user selection determine which visualization to render in the second visualization div
     if (this.state.selectedVisualization2 === "BarChart") {
       visualization2 = <BarGraph2 files={this.state.data} selectedFile={this.state.selectedFileIndex2} />
-    
+
     } else if (this.state.selectedVisualization2 === "LineChart") {
       visualization2 = <LineChart2 files={this.state.data} selectedFile={this.state.selectedFileIndex2} />
     }
