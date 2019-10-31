@@ -40,18 +40,8 @@ class App extends Component {
         }
       })
 
-
       const parsedResponse = await loginResponse.json();
       console.log(parsedResponse.data, "THIS IS THE PARSED RESPONSE")
-
-
-      // this.setState(() => {
-      //   return {
-      //     ...parsedResponse.data,
-      //     loading: false
-      //   }
-      // })
-
 
       return parsedResponse
 
@@ -68,7 +58,6 @@ class App extends Component {
       })
 
       const parsedResponse = await logOutResponse.json();
-
 
       return parsedResponse
       
@@ -93,13 +82,6 @@ class App extends Component {
 
       const parsedResponse = await registerResponse.json();
       
-      console.log(parsedResponse, "HERE IS THE PARSED RESPONSE")
-      // this.setState(() => {
-      //   return {
-      //     ...parsedResponse.data,
-      //     loading: false
-      //   }
-      // })
       
       return parsedResponse
     } catch (err) {

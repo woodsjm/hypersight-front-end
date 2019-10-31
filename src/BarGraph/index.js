@@ -15,7 +15,7 @@ const BarGraph = (props) => {
   const [ title ] = Object.keys(props.files[props.selectedFile])
 
   // CSV row headers 
-  const ITEMS = props.files[props.selectedFile][title].map(object => {
+  const items = props.files[props.selectedFile][title].map(object => {
     return object['']
   })
 
@@ -56,7 +56,7 @@ const BarGraph = (props) => {
         {dataFromCsv}
       </XYPlot>
 
-      <DiscreteColorLegend orientation="horizontal" items={ITEMS} />
+      <DiscreteColorLegend orientation="horizontal" items={items} />
 
     </div>
   )
