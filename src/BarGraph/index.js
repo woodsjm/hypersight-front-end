@@ -8,7 +8,6 @@ import {
   VerticalBarSeries,
   DiscreteColorLegend
 } from 'react-vis';
-import PrepCSV from '../Functions/PrepCSV.js'
 
 
 const BarGraph = (props) => {
