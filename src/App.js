@@ -33,11 +33,12 @@ class App extends Component {
 
       const loginResponse = await fetch(`${process.env.REACT_APP_API_URL}/user/login`, {
         method: 'POST',
-        credentials: 'include',// on every request we have to send the cookie
+        credentials: 'include',
         body: JSON.stringify(loginInfo),
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        crossDomain: true
       })
 
       const parsedResponse = await loginResponse.json();
