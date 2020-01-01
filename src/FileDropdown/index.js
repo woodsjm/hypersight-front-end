@@ -7,7 +7,7 @@ const FileDropdown = (props) => {
     const fileName = Object.keys(file)
     return (
       <div key={i}>
-          <Dropdown.Item text={fileName} onClick={  () => props.selectFile(i) }/>
+        <Dropdown.Item text={fileName} onClick={  () => props.selectFile(i) }/>
       </div>
       )
   })

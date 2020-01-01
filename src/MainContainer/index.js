@@ -143,6 +143,7 @@ class MainContainer extends React.Component {
 
   importCSV = () => {
     const { csvfile } = this.state;
+    console.log("Inside import", csvfile)
     Papa.parse(csvfile, {
       complete: this.updateData,
       header: true
@@ -158,6 +159,7 @@ class MainContainer extends React.Component {
 
   updateData(result) {
     var data = result.data;
+    console.log("Inside updateData", data)
     this.setState({
       csvfile: data
     })

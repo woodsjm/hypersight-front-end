@@ -197,8 +197,7 @@ class DataViz extends React.Component {
                   </div>  
               <Sidebar.Pusher>
                 <Segment basic style={{height: '100vh'}}>
-                    <div style={{height: "50px"}}></div>
-                        
+                    <div style={{height: "50px"}}></div>                        
                 </Segment>
               </Sidebar.Pusher>
             </Sidebar.Pushable> 

@@ -48,7 +48,7 @@ const BarGraph = (props) => {
   return (
     <div>
 
-      <XYPlot xType="ordinal" width={550} height={500} xDistance={100}>
+      <XYPlot xType="ordinal" width={550} height={500} xDistance={100} margin={{left: 75}}>
         <VerticalGridLines />
         <HorizontalGridLines />
         <XAxis />
