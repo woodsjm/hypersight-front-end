@@ -17,6 +17,9 @@
     "shards-react": "^1.0.3",
     "three.js": "^0.77.1"
   },
+  "engines": {
+    "node": "11.15.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
