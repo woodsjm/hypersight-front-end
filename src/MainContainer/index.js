@@ -251,16 +251,12 @@ class MainContainer extends React.Component {
                           <div style={{textAlign: 'center'}}>
                             <div style={{textAlign: 'justify', width: '80%', display: 'inline-block'}}>
 
-                            <p>Hypersight currently requires a specific format for proper visualization of CSV data. There are two elements to proper visualization here: dynamic creation of legends and properly
-                               scaled numerical values.</p>
+                            <p>Hypersight currently requires a specific format for proper visualization of CSV data.</p>
 
                             <p>
                                In the example table below, you will notice there are both row headers and column headers. 
-                               The row headers begin on row two, and the column headers begin on column two. Moreover, there are a limited number of rows and columns. A legend will be generated for the given row headers (column headers will be your x-values). Currently, Hypersight can handle a maximum of 4 rows and a maximum of 8 columns. </p>
+                               The row headers begin on row two, and the column headers begin on column two. Moreover, there are a limited number of rows and columns. A legend will be generated for the given row headers (column headers will be your x-values).</p>
 
-                            <p>
-                               Lastly, you will notice that the range of numerical values is limited. A range that is too wide will lead to improper scaling when the data is plotted. Future bug fixes, to the scaling issue, are in the pipeline.
-                                </p>
 
                             <div style={{margin: '10px'}}></div>
                               <Table celled>
